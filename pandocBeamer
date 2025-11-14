@@ -1,0 +1,253 @@
+#!/usr/bin/env python3
+"""
+pandocBeamer - A wrapper script for generating Beamer-like reveal.js presentations
+Usage: pandocBeamer [--html|--pdf|--pdf-html] <input.md>
+"""
+
+import sys
+import subprocess
+import os
+import argparse
+import re
+import tempfile
+from pathlib import Path
+from html.parser import HTMLParser
+
+class CommentStripper(HTMLParser):
+    """HTML parser that removes HTML comments"""
+    def __init__(self):
+        super().__init__()
+        self.output = []
+
+    def handle_data(self, data):
+        self.output.append(data)
+
+    def handle_starttag(self, tag, attrs):
+        attrs_str = ' '.join(f'{k}="{v}"' if v else k for k, v in attrs)
+        if attrs_str:
+            self.output.append(f'<{tag} {attrs_str}>')
+        else:
+            self.output.append(f'<{tag}>')
+
+    def handle_endtag(self, tag):
+        self.output.append(f'</{tag}>')
+
+    def handle_startendtag(self, tag, attrs):
+        attrs_str = ' '.join(f'{k}="{v}"' if v else k for k, v in attrs)
+        if attrs_str:
+            self.output.append(f'<{tag} {attrs_str}/>')
+        else:
+            self.output.append(f'<{tag}/>')
+
+    def get_output(self):
+        return ''.join(self.output)
+
+def strip_html_comments(content):
+    """Remove HTML comments from content using HTMLParser"""
+    parser = CommentStripper()
+    parser.feed(content)
+    return parser.get_output()
+
+def expand_includes(content, base_dir):
+    """Recursively expand \include{file} macros in content"""
+    pattern = r'\\cat\{([^}]+)\}'
+
+    def replace_include(match):
+        filename = match.group(1)
+        file_path = base_dir / filename
+
+        if not file_path.exists():
+            return f"[Error: Could not read {filename}]"
+
+        try:
+            with open(file_path, 'r') as f:
+                included_content = f.read()
+            # Recursively expand includes in the included file
+            return expand_includes(included_content, file_path.parent)
+        except Exception as e:
+            return f"[Error: Could not read {filename}: {e}]"
+
+    return re.sub(pattern, replace_include, content)
+
+# Global variable defining the order of Lua filters to apply
+# Filters are applied in the order listed here
+# Note: include.lua is removed since we handle \include{} in Python now
+LUA = [
+    "lua-filters/tikz.lua",         # Process TikZ diagrams
+    "lua-filters/table.lua",        # Process LaTeX tables with LaTeXML
+    "lua-filters/haskell-main.lua", # Process \haskellMain{filepath, id} for GHCJS compilation
+    # "lua-filters/include-code.lua", # Process \include{file} inside HTML code blocks (runs last)
+]
+
+def build_html_command(input_file, output_file, script_dir, filters=None):
+    """Build pandoc command for HTML/reveal.js output"""
+    cmd = [
+        "pandoc", input_file,
+        "-t", "revealjs",
+        "-V", "theme=white",
+        "-V", "slideNumber=true",
+        "-V", "controls=false",
+        "-V", "center=false",
+        "--variable", "transition=none",
+        "-V", f"revealjs-url={str(script_dir / "vendor" / "reveal.js")}",
+        "-V", f"theme={str(script_dir / "css" / "beamer-theme.css")}",
+        "--mathjax",
+        "--css", str(script_dir / "css" / "beamer-theme.css"),
+    ]
+
+    # Add Lua filters in the order specified
+    filters_to_use = filters if filters is not None else LUA
+    for lua_filter in filters_to_use:
+        cmd.extend(["--lua-filter", str(script_dir / lua_filter)])
+
+    # Add remaining options
+    cmd.extend([
+        "--citeproc",  # Enable citation processing
+        "--include-in-header", str(script_dir / "js" / "codebox.js"),
+        "--include-in-header", str(script_dir / "js" / "ghcjs-shims.js"),
+        "-o", output_file,
+        "-s"
+    ])
+
+    return cmd
+
+def build_pdf_command(input_file, output_file, script_dir, filters=None):
+    """Build pandoc command for PDF/Beamer output"""
+    cmd = [
+        "pandoc", input_file,
+        "-t", "beamer",
+        "--pdf-engine=pdflatex",
+    ]
+
+    # Add Lua filters in the order specified
+    filters_to_use = filters if filters is not None else LUA
+    for lua_filter in filters_to_use:
+        cmd.extend(["--lua-filter", str(script_dir / lua_filter)])
+
+    # Add remaining options
+    cmd.extend([
+        "--citeproc",  # Enable citation processing
+        "-o", output_file,
+        "-s"
+    ])
+
+    return cmd
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Generate Beamer-like presentations from markdown",
+        usage="pandocBeamer [--html|--pdf|--pdf-html] <input.md>"
+    )
+    parser.add_argument(
+        "input_file",
+        help="Input markdown file"
+    )
+    parser.add_argument(
+        "--html",
+        action="store_const",
+        const="html",
+        dest="backend",
+        help="Generate HTML/reveal.js output (default)"
+    )
+    parser.add_argument(
+        "--pdf",
+        action="store_const",
+        const="pdf",
+        dest="backend",
+        help="Generate PDF/Beamer output using LaTeX"
+    )
+    parser.add_argument(
+        "--pdf-html",
+        action="store_const",
+        const="pdf-html",
+        dest="backend",
+        help="Generate 16:9 PDF by rendering HTML output with Playwright"
+    )
+    parser.add_argument(
+        "--filters",
+        nargs="+",
+        help="List of Lua filters to apply (default: all filters in LUA list)"
+    )
+    parser.set_defaults(backend="html")
+
+    args = parser.parse_args()
+
+    input_file = args.input_file
+    input_path = Path(input_file)
+
+    if not input_path.exists():
+        print(f"Error: File '{input_file}' not found", file=sys.stderr)
+        sys.exit(1)
+
+    # Find the project root (where lua-filters/ and js/ directories are)
+    script_dir = Path(__file__).resolve().parent
+
+    # Read input file and expand \include{} macros
+    input_dir = input_path.resolve().parent
+    with open(input_path, 'r') as f:
+        content = f.read()
+
+    # Strip HTML comments first to prevent broken comments with \cat{} expansions
+    content = strip_html_comments(content)
+
+    # Expand all \cat{} macros recursively
+    expanded_content = expand_includes(content, input_dir)
+
+    # Write to temporary file
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.md', delete=False) as tmp:
+        tmp.write(expanded_content)
+        tmp_path = tmp.name
+
+    # Determine output file extension and build command based on backend
+    if args.backend == "pdf":
+        output_file = input_path.with_suffix(".pdf")
+        cmd = build_pdf_command(tmp_path, str(output_file), script_dir, args.filters)
+    elif args.backend == "pdf-html":
+        # For pdf-html: first generate HTML, then convert to PDF using Playwright
+        html_output = input_path.with_suffix(".html")
+        output_file = input_path.with_suffix(".pdf")
+        cmd = build_html_command(tmp_path, str(html_output), script_dir, args.filters)
+    else:  # html (default)
+        output_file = input_path.with_suffix(".html")
+        cmd = build_html_command(tmp_path, str(output_file), script_dir, args.filters)
+
+    # Run pandoc
+    try:
+        result = subprocess.run(cmd, check=True)
+
+        # For pdf-html backend, run the Node.js conversion script
+        if args.backend == "pdf-html":
+            print(f"Successfully generated {html_output}")
+            print(f"Converting HTML to PDF using Playwright...")
+
+            # Check if Node.js is available
+            node_script = script_dir / "html-to-pdf.js"
+            if not node_script.exists():
+                print(f"Error: {node_script} not found", file=sys.stderr)
+                sys.exit(1)
+
+            # Run the HTML-to-PDF conversion
+            pdf_cmd = ["node", str(node_script), str(html_output), str(output_file)]
+            pdf_result = subprocess.run(pdf_cmd, check=True)
+
+            if pdf_result.returncode == 0:
+                print(f"Successfully generated {output_file}")
+        else:
+            print(f"Successfully generated {output_file}")
+
+        sys.exit(result.returncode)
+    except subprocess.CalledProcessError as e:
+        print(f"Error: Command failed with exit code {e.returncode}", file=sys.stderr)
+        sys.exit(e.returncode)
+    except FileNotFoundError as e:
+        print(f"Error: Required tool not found. {e}", file=sys.stderr)
+        print("For --pdf-html backend, ensure Node.js and Playwright are installed:", file=sys.stderr)
+        print("  npm install", file=sys.stderr)
+        sys.exit(1)
+    finally:
+        # Clean up temporary file
+        if os.path.exists(tmp_path):
+            os.unlink(tmp_path)
+
+if __name__ == "__main__":
+    main()

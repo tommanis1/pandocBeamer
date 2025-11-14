@@ -1,0 +1,187 @@
+@font-face {
+    font-family: "Computer Modern";
+    src: url('fonts/cmunss.ttf');
+  }
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('fonts/cmunsx.ttf');
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('fonts/cmunsi.ttf');
+    font-style: italic, oblique;
+  }
+  
+  /* Outline */
+  .slides {
+    /* outline-style: solid;
+    outline-offset: 1rem;
+    outline-width: 1px;
+    outline-color: #000; */
+    font-size: 4vh;
+    /* Remove all defaults */
+    width: 100vw !important;
+    height: 100vh !important;
+    inset: 0 0 0 0 !important;
+    transform: translate(0%, 0%) scale(1) !important;
+  }
+
+  .reveal .slides {
+    text-align:left !important;
+}
+  
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4,
+  .reveal h5,
+  .reveal h6 {
+    font-weight: normal !important;
+    margin-bottom: 1rem !important;
+    margin-left: 0.5rem !important;
+    margin-top: 0.5rem !important;
+  }
+  
+  .reveal h1 {
+    font-size: 5vh !important;
+    margin-bottom: 3vh !important;
+    text-align: left !important;
+    margin-left: 4rem !important;
+    margin-top: 2rem !important;
+
+    color: blue !important;
+  }
+  
+  .reveal h2 {
+    font-size: 2.5rem !important;
+    margin-bottom: 3rem !important;
+  }
+  
+  .reveal h3 {
+    font-size: 1.75rem !important;
+  }
+  
+  .reveal h4 {
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+  }
+  
+  @media print {
+    .slides {
+      box-shadow: 0px 0px 0px;
+      border-style: none;
+    }
+  }
+  
+  /* .quarto-title-author-name {
+    font-size: 1.5rem !important;
+  } */
+  
+  .date {
+    font-size: 1.5rem !important; 
+  }
+
+  /* .reveal {
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 0;
+    margin: 0;
+    font-size: 2.5vh;
+  } */
+  
+  /* .reveal .slides {
+    max-width: 100%;
+    width: 48vw !important;
+    height: 48vh !important;
+    margin: 0 auto;
+    padding: 0;
+  } */
+  
+  
+
+
+/* body of each slide */
+  .reveal section > *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+    padding-left: 2em;
+    padding-right: 2em;
+    line-height: 1.45em;
+  }
+
+.reveal section ul,
+.reveal section ol {
+  margin-left: 1em;
+  padding-left: 1em;
+}
+
+/* .left-align-math {
+  text-align: left !important;
+  width: auto !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+mjx-container {
+  width: 100% !important;
+  display: block;
+  box-sizing: border-box;
+} */
+
+img.tikz-img {
+  max-width: 100%;
+  width: 100% ;
+  height: auto;
+  display: block;
+  /* margin: 0 auto; */
+}
+
+img.tikz-img.centered {
+  margin: 0 auto;
+}
+
+.figure {
+  text-align: center;
+  /* margin: 1em 0; */
+}
+
+.figure .caption {
+  display: block;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  font-style: italic;
+  color: #555;
+}
+
+/* // codebox */
+
+.codebox {
+  border: 0.2vw solid #ccc;
+  box-shadow: 0.5vw 0.5vw 2vw rgba(0, 0, 0, 0.1);
+  border-radius: 1vw;
+  font-family: monospace;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 90vw;
+  max-height: 80vh;
+  overflow: auto;
+  font-size: 1.2vw; /* Scales text with viewport width */
+  resize: both;  
+}
+
+.codebox-header {
+  background-color: #e0e0e0;
+  padding: 0.7vw;
+  font-weight: bold;
+  border-bottom: 0.2vw solid #ccc;
+  font-size: 1.1vw;
+}
+
+.codebox pre {
+  margin: 0;
+  padding: 1vw;
+  overflow-x: auto;
+  line-height: 1.45em;
+  font-size: 1vw;
+}
