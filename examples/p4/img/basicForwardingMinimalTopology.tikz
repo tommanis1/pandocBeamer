@@ -1,0 +1,64 @@
+\begin{tikzpicture}[
+router/.style={inner sep=0pt},
+host/.style={inner sep=0pt},
+port/.style={font=\scriptsize\color{green!60!black},inner sep=1pt},
+table/.style={draw, rectangle, minimum width=2.5cm, align=left, font=\footnotesize\ttfamily}
+]
+
+% Set explicit bounding box
+\useasboundingbox (-3.7,-3.7) rectangle (3.7,3.0);
+
+\node[router] (s1) at (0,0) {\includegraphics[width=1.6cm]{deps/3015_eps/router.eps}};
+
+% Add SDN Controller above the switch
+\node[above=1.5cm of s1, fill=red!80, text=white, draw, rounded corners, minimum width=2.5cm, minimum height=0.8cm] (controller) {SDN Controller};
+
+% Draw arrow from controller to switch
+\draw[red,thick,->] (controller.south) -- (s1.north);
+
+\node[host] (h1) at (-3,0) {\includegraphics[width=1.3cm]{deps/3015_eps/pc.eps}};
+\node[host] (h2) at (3,0.8) {\includegraphics[width=1.3cm]{deps/3015_eps/pc.eps}};
+\node[host] (h3) at (3,-0.8) {\includegraphics[width=1.3cm]{deps/3015_eps/pc.eps}};
+
+\node[below=1pt of h1] {\scriptsize(10.0.1.1)};
+\node[below=1pt of h2] {\scriptsize(10.0.2.2)};
+\node[below=1pt of h3] {\scriptsize(10.0.3.3)};
+
+\draw[gray] (h1.east) -- node[port,midway,above]{1} (s1.west);
+\draw[gray] (s1.east) -- node[port,midway,above]{2} (h2.west);
+\draw[gray] (s1.east) -- node[port,midway,below]{3} (h3.west);
+
+% Add P4 logo above the bottom of the switch
+\node[below=-0.4cm of s1] {\includesvg[width=0.6cm]{img/p4}};
+
+\begin{scope}[shift={(0,-2.2)}, font=\footnotesize\ttfamily]
+    % Add title above the table
+    \node[font=\small\bfseries\sffamily] at (0,1.2) {Port Mapping Table};
+    
+    % Draw the outer box (made wider)
+    \draw (-1.8,-0.6) rectangle (1.8,0.6);
+    
+    % Draw vertical line to separate columns (adjusted position)
+    \draw (0.6,-0.6) -- (0.6,0.6);
+    
+    % Draw horizontal lines to separate rows
+    \draw (-1.8,0.2) -- (1.8,0.2);
+    \draw (-1.8,-0.2) -- (1.8,-0.2);
+    
+    % Add column headers
+    \draw[thick] (-1.8,0.6) -- (1.8,0.6) -- (1.8,0.9) -- (-1.8,0.9) -- cycle;
+    \node[font=\scriptsize\bfseries] at (-0.6,0.75) {IP Address};
+    \node[font=\scriptsize\bfseries] at (1.2,0.75) {Port};
+    
+    % Add IP addresses (left column)
+    \node at (-0.6,0.4) {10.0.1.1};
+    \node at (-0.6,0) {10.0.2.2};
+    \node at (-0.6,-0.4) {10.0.3.3};
+    
+    % Add port numbers (right column)
+    \node at (1.2,0.4) {1};
+    \node at (1.2,0) {2};
+    \node at (1.2,-0.4) {3};
+\end{scope}
+
+\end{tikzpicture}

@@ -1,0 +1,45 @@
+\begin{tikzpicture}[
+router/.style={inner sep=0pt},
+host/.style={inner sep=0pt},
+port/.style={font=\scriptsize\color{green!60!black},inner sep=1pt},
+table/.style={draw, rectangle, minimum width=2.5cm, align=left, font=\footnotesize\ttfamily}
+]
+
+% Set explicit bounding box
+\useasboundingbox (-3.7,-3.7) rectangle (3.7,3.0);
+
+\node[router] (s1) at (0,0) {\includegraphics[width=1.6cm]{deps/3015_eps/router.eps}};
+
+\node[above=1.5cm of s1, fill=red!80, text=white, draw, rounded corners, minimum width=2.5cm, minimum height=0.8cm] (controller) {SDN Controller};
+\draw[red,thick,->] (controller.south) -- (s1.north);
+
+\node[host] (h1) at (-3,0) {\includegraphics[width=1.3cm]{deps/3015_eps/pc.eps}};
+\node[host] (h2) at (3,0.8) {\includegraphics[width=1.3cm]{deps/3015_eps/pc.eps}};
+\node[host] (h3) at (3,-0.8) {\includegraphics[width=1.3cm]{deps/3015_eps/pc.eps}};
+
+\node[below=1pt of h1, align=center, font=\tiny] {10.0.1.1\\08:00:01:01:01};
+\node[below=1pt of h2, align=center, font=\tiny] {10.0.2.2\\08:00:02:02:02};
+\node[below=1pt of h3, align=center, font=\tiny] {10.0.3.3\\08:00:03:03:03};
+
+\draw[gray] (h1.east) -- node[port,midway,above]{1} (s1.west);
+\draw[gray] (s1.east) -- node[port,midway,above]{2} (h2.west);
+\draw[gray] (s1.east) -- node[port,midway,below]{3} (h3.west);
+
+\begin{scope}[shift={(0,-2.2)}, font=\footnotesize\ttfamily]
+    \node[font=\small\bfseries\sffamily] at (0,1.2) {ipv4\_lpm Table};
+    \draw (-2.8,-0.6) rectangle (2.0,0.6);
+    \draw (-1.4,-0.6) -- (-1.4,0.6);
+    \draw (-2.8,0.2) -- (2.0,0.2);
+    \draw (-2.8,-0.2) -- (2.0,-0.2);
+    \draw[thick] (-2.8,0.6) -- (2.0,0.6) -- (2.0,0.9) -- (-2.8,0.9) -- cycle;
+    \node[font=\scriptsize\bfseries] at (-2.1,0.75) {Key (IP)};
+    \node[font=\scriptsize\bfseries] at (0.3,0.75) {Action};
+    \node[font=\tiny] at (-2.1,0.4) {10.0.1.1};
+    \node[font=\tiny] at (-2.1,0) {10.0.2.2};
+    \node[font=\tiny] at (-2.1,-0.4) {10.0.3.3};
+    \node[font=\tiny, align=left] at (0.3,0.4) {forward(08:00:01:01:01, 1)};
+    \node[font=\tiny, align=left] at (0.3,0) {forward(08:00:02:02:02, 2)};
+    \node[font=\tiny, align=left] at (0.3,-0.4) {forward(08:00:03:03:03, 3)};
+\end{scope}
+
+\end{tikzpicture}

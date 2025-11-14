@@ -1,0 +1,45 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Command definitions
+\newcommand{\psix}{\ensuremath{\mathrm{P4_{16}}}}
+\newcommand{\pfour}{\ensuremath{\mathrm{P4_{14}}}}
+
+\begin{document}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{lcc!{\vrule width 1.2pt}ccc!{\vrule width 1.2pt}}
+\toprule
+\multirow{2}{*}{Tool} &
+\multirow{2}{*}{P4 Version} &
+\multirow{2}{*}{Open Source} &
+\multirow{2}{*}{Fixed Properties} &
+\multicolumn{2}{c!{\vrule width 1.2pt}}{User-defined Properties} \\
+\cmidrule(lr){5-6}
+ & & & & Intra-packet & Inter-packet \\
+\midrule
+p4tv& \psix{} & \href{https://github.com/Invincibleyc/P4LTL}{$\sim$} & $\times$ & $\times$ &  \checkmark \\
+% Acquila \cite{10.1145/3452296.3472937}
+assert-p4  & \psix{} & \href{https://github.com/LucasMFreire/assert-p4}{\checkmark} & $\times$ & \checkmark & $\times$ \\ 
+vera & \pfour{} & \href{https://github.com/dragosdmtrsc/vera2}{\checkmark} & \checkmark & $\sim$ & $\times$ \\
+bf4 & \psix{}  & \href{https://github.com/dragosdmtrsc/bf4}{\checkmark}  & \checkmark  & $\times$  & $\times$ \\
+p4v & \pfour{} & $\times$ & \checkmark & \checkmark & $\times$\\
+\bottomrule
+\end{tabular}
+\caption{Comparison of P4 verification tools}
+\end{table}
+
+\end{document}

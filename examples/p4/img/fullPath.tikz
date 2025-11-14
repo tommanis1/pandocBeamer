@@ -1,0 +1,55 @@
+
+\begin{tikzpicture}[
+  node distance=2cm and 1.5cm,
+  every node/.style={inner sep=0pt},
+  label/.style={font=\scriptsize}
+]
+
+\node (serverL) {\includegraphics[width=1.8cm]{deps/3015_eps/fileserver.eps}};
+\node[right=2cm of serverL] (switchL) {\includegraphics[width=1.4cm]{deps/3015_eps/router.eps}};
+\node[right=2cm of switchL] (switchR) {\includegraphics[width=1.4cm]{deps/3015_eps/router.eps}};
+\node[right=2cm of switchR] (serverR) {\includegraphics[width=1.8cm]{deps/3015_eps/fileserver.eps}};
+
+\node[above=2cm of $(switchL)!0.5!(switchR)$, fill=red!80, text=white, draw, rounded corners, minimum width=3cm, minimum height=0.8cm] (controller) {SDN Controller};
+
+% fixed identical boxes
+\def\boxwidth{2.5cm}  % Increased width to accommodate longer text
+\def\boxheight{0.6cm}
+
+\node[anchor=south west] (topboxstart) at ([xshift=0.1cm,yshift=-0.064cm]controller.north west) {};
+
+\foreach \i/\text in {1/BGP,2/Traffic Engineering,3/Load Balancing} {
+  \node[draw, 
+        fill=orange!60, 
+        minimum width=\boxwidth, 
+        minimum height=\boxheight,
+        text width={\boxwidth-4pt},  % Force text width to be consistent
+        font=\tiny,  % Changed from \scriptsize to \tiny for smaller font
+        align=center, 
+        anchor=south west, 
+        inner sep=2pt,  % Add consistent inner padding
+        yshift={(\i-1)*\boxheight}] (box\i) at (topboxstart.north west) {\text};
+}
+\node[anchor=south west, font=\scriptsize, yshift={4*\boxheight}] (dots) at (topboxstart.north west) {};
+
+\draw[red,thick,->] (controller.south) -- (switchL.north);
+\draw[red,thick,->] (controller.south) -- (switchR.north);
+
+\node[below=0.15cm of switchL, label] {\includesvg[width=0.8cm]{img/p4}};
+\node[below=0.15cm of switchR, label] {\includesvg[width=0.8cm]{img/p4}};
+
+\node[anchor=south west] (p4L) at ($(serverL.south east)+(0.1,0)$) {\includesvg[width=0.4cm]{img/p4}};
+\node[above=0.15cm of p4L, draw, fill=blue!50, text=white, rounded corners=2pt, font=\small, inner sep=4pt, minimum width=0.8cm, minimum height=0.5cm] (nicL) {NIC};
+
+\node[anchor=south east] (p4R) at ($(serverR.south west)+(-0.1,0)$) {\includesvg[width=0.4cm]{img/p4}};
+\node[above=0.15cm of p4R, draw, fill=blue!50, text=white, rounded corners=2pt, font=\small, inner sep=4pt, minimum width=0.8cm, minimum height=0.5cm] (nicR) {NIC};
+
+% Changed: arrows now go from switches to NICs
+\draw[thick] (switchL.west) -- (nicL.east);
+\draw[thick] (switchL.east) -- (switchR.west);
+\draw[thick] (switchR.east) -- (nicR.west);
+
+\draw[red,thick,->] (controller.south) -- (nicL.north);
+\draw[red,thick,->] (controller.south) -- (nicR.north);
+
+\end{tikzpicture}

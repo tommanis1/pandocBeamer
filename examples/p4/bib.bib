@@ -1,0 +1,491 @@
+@article{10.1145/129630.129635,
+author = {Gelernter, David and Carriero, Nicholas},
+title = {Coordination languages and their significance},
+year = {1992},
+issue_date = {Feb. 1992},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {35},
+number = {2},
+issn = {0001-0782},
+url = {https://doi.org/10.1145/129630.129635},
+doi = {10.1145/129630.129635},
+journal = {Commun. ACM},
+month = feb,
+pages = {97–107},
+numpages = {11},
+keywords = {Linda, coordination languages}
+}
+
+@techreport{mckeown2016automatically,
+author = {McKeown, Nick and Talayco, Dan and Varghese, George and Lopes, Nuno and Bjørner, Nikolaj and Rybalchenko, Andrey},
+title = {Automatically verifying reachability and well-formedness in P4 Networks},
+year = {2016},
+month = {September},
+abstract = {P4 allows a new level of dynamism for routers beyond OpenFlow 1.4 by allowing headers and tables to
+be modified by software in the field. Without care, P4 can unleash a new wave of software bugs. Existing tools (e.g., VeriFlow, NetPlumber, Hassel, NoD) cannot model changes to forwarding behaviors without reprogramming tool internals or having users manually add new forwarding models.  Further, a P4 network can introduce a new class of bugs (not tested for by existing tools) wherein the P4 network creates  malformed packets.
+
+To attack these two problems, we provide an operational semantics for P4 constructs and use it to compile P4 to Datalog so that the verification model can be automatically updated as the network changes.  We demonstrate this vision by compiling the mTag example in the P4 specification
+(and a new sTag security example) on a sample network and by automatically detecting forwarding bugs.  Efficiently verifying (across all table entries and packet headers) that a P4 network only delivers well-formed packets takes a few seconds.},
+url = {https://www.microsoft.com/en-us/research/publication/automatically-verifying-reachability-well-formedness-p4-networks/},
+number = {MSR-TR-2016-65},
+}
+
+@misc{kheradmand2018p4kformalsemanticsp4,
+      title={P4K: A Formal Semantics of P4 and Applications}, 
+      author={Ali Kheradmand and Grigore Rosu},
+      year={2018},
+      eprint={1804.01468},
+      archivePrefix={arXiv},
+      primaryClass={cs.NI},
+      url={https://arxiv.org/abs/1804.01468}, 
+}
+
+@inproceedings{10.1145/3185467.3185499,
+author = {Freire, Lucas and Neves, Miguel and Leal, Lucas and Levchenko, Kirill and Schaeffer-Filho, Alberto and Barcellos, Marinho},
+title = {Uncovering Bugs in P4 Programs with Assertion-based Verification},
+year = {2018},
+isbn = {9781450356640},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3185467.3185499},
+doi = {10.1145/3185467.3185499},
+abstract = {Recent trends in software-defined networking have extended network programmability to the data plane through programming languages such as P4. Unfortunately, the chance of introducing bugs in the network also increases significantly in this new context. Existing data plane verification approaches are unable to model P4 programs, or they present severe restrictions in the set of properties that can be modeled. In this paper, we introduce a data plane program verification approach based on assertion checking and symbolic execution. Network programmers annotate P4 programs with assertions expressing general security and correctness properties. Once annotated, these programs are transformed into C-based models and all their possible paths are symbolically executed. Results show that the proposed approach, called ASSERT-P4, can uncover a broad range of bugs and software flaws. Furthermore, experimental evaluation shows that it takes less than a minute for verifying various P4 applications proposed in the literature.},
+booktitle = {Proceedings of the Symposium on SDN Research},
+articleno = {4},
+numpages = {7},
+keywords = {P4, Programmable Data Planes, Verification},
+location = {Los Angeles, CA, USA},
+series = {SOSR '18}
+}
+
+@inproceedings {305320,
+author = {Delong Zhang and Chong Ye and Fei He},
+title = {On Temporal Verification of Stateful P4 Programs},
+booktitle = {22nd USENIX Symposium on Networked Systems Design and Implementation (NSDI 25)},
+year = {2025},
+isbn = {978-1-939133-46-5},
+address = {Philadelphia, PA},
+pages = {219--235},
+url = {https://www.usenix.org/conference/nsdi25/presentation/zhang-delong},
+publisher = {USENIX Association},
+month = apr
+}
+
+@inproceedings{10.1145/3230543.3230582,
+author = {Liu, Jed and Hallahan, William and Schlesinger, Cole and Sharif, Milad and Lee, Jeongkeun and Soul\'{e}, Robert and Wang, Han and Ca\c{s}caval, C\u{a}lin and McKeown, Nick and Foster, Nate},
+title = {p4v: practical verification for programmable data planes},
+year = {2018},
+isbn = {9781450355674},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3230543.3230582},
+doi = {10.1145/3230543.3230582},
+abstract = {We present the design and implementation of p4v, a practical tool for verifying data planes described using the P4 programming language. The design of p4v is based on classic verification techniques but adds several key innovations including a novel mechanism for incorporating assumptions about the control plane and domain-specific optimizations which are needed to scale to large programs. We present case studies showing that p4v verifies important properties and finds bugs in real-world programs. We conduct experiments to quantify the scalability of p4v on a wide range of additional examples. We show that with just a few hundred lines of control-plane annotations, p4v is able to verify critical safety properties for switch.p4, a program that implements the functionality of on a modern data center switch, in under three minutes.},
+booktitle = {Proceedings of the 2018 Conference of the ACM Special Interest Group on Data Communication},
+pages = {490–503},
+numpages = {14},
+keywords = {verification, programmable data planes, P4},
+location = {Budapest, Hungary},
+series = {SIGCOMM '18}
+}
+
+@inproceedings{10.1145/3387514.3405888,
+author = {Dumitrescu, Dragos and Stoenescu, Radu and Negreanu, Lorina and Raiciu, Costin},
+title = {bf4: towards bug-free P4 programs},
+year = {2020},
+isbn = {9781450379557},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3387514.3405888},
+doi = {10.1145/3387514.3405888},
+abstract = {Recent verification work has made advances in finding bugs in P4 programs before deployment, but it requires that the programmer specifies table rules that are possible at runtime[32, 24, 27]. This imposes a specification burden on the programmer, while at the same time failing to guarantee that bugs will not be inserted at runtime by faulty controllers.We present bf4, a novel verification approach for P4 programs that uses a mix of static verification, code changes and runtime checks to ensure that the deployed P4 program is bug free. To achieve this, bf4 uses static analysis to find all possible bugs in the P4 program; for each possible bug, bf4 attempts to find predicates that, when applied to table rules inserted by the controller, make that bug unreachable. If such predicates do not exist, bf4 can change the P4 code and re-run the procedure above.We applied bf4 to a wide range of P4 programs; for all these, bf4 is able to generate controller assertions and propose fixes that guarantee no controller-induced bug is reachable. At runtime, bf4 checks that the controller does not insert faulty rules; when it does, it throws an exception which helps troubleshoot the bug.},
+booktitle = {Proceedings of the Annual Conference of the ACM Special Interest Group on Data Communication on the Applications, Technologies, Architectures, and Protocols for Computer Communication},
+pages = {571–585},
+numpages = {15},
+keywords = {Network dataplane verification, programmable networks},
+location = {Virtual Event, USA},
+series = {SIGCOMM '20}
+}
+
+@inproceedings{10.1145/3452296.3472937,
+author = {Tian, Bingchuan and Gao, Jiaqi and Liu, Mengqi and Zhai, Ennan and Chen, Yanqing and Zhou, Yu and Dai, Li and Yan, Feng and Ma, Mengjing and Tang, Ming and Lu, Jie and Wei, Xionglie and Liu, Hongqiang Harry and Zhang, Ming and Tian, Chen and Yu, Minlan},
+title = {Aquila: a practically usable verification system for production-scale programmable data planes},
+year = {2021},
+isbn = {9781450383837},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3452296.3472937},
+doi = {10.1145/3452296.3472937},
+abstract = {This paper presents Aquila, the first practically usable verification system for Alibaba's production-scale programmable data planes. Aquila addresses four challenges in building a practically usable verification: (1) specification complexity; (2) verification scalability; (3) bug localization; and (4) verifier self validation. Specifically, first, Aquila proposes a high-level language that facilitates easy expression of specifications, reducing lines of specification codes by tenfold compared to the state-of-the-art. Second, Aquila constructs a sequential encoding algorithm to circumvent the exponential growth of states associated with the upscaling of data plane programs to production level. Third, Aquila adopts an automatic and accurate bug localization approach that can narrow down suspects based on reported violations and pinpoint the culprit by simulating a fix for each suspect. Fourth and finally, Aquila can perform self validation based on refinement proof, which involves the construction of an alternative representation and subsequent equivalence checking. To this date, Aquila has been used in the verification of our production-scale programmable edge networks for over half a year, and it has successfully prevented many potential failures resulting from data plane bugs.},
+booktitle = {Proceedings of the 2021 ACM SIGCOMM 2021 Conference},
+pages = {17–32},
+numpages = {16},
+keywords = {programmable switches, formal methods, P4 verification},
+location = {Virtual Event, USA},
+series = {SIGCOMM '21}
+}
+@inproceedings{10.1145/3445814.3446764,
+author = {Kang, Qiao and Xing, Jiarong and Qiu, Yiming and Chen, Ang},
+title = {Probabilistic profiling of stateful data planes for adversarial testing},
+year = {2021},
+isbn = {9781450383172},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3445814.3446764},
+doi = {10.1145/3445814.3446764},
+abstract = {Recently, there is a flurry of projects that develop data plane systems in programmable switches, and these systems perform far more sophisticated processing than simply deciding a packet's next hop (i.e., traditional forwarding). This presents challenges to existing network program profilers, which are developed primarily to handle stateless forwarding programs.  We develop P4wn, a program profiler that can analyze program behaviors of stateful data plane systems; it captures the fact that these systems process packets differently based on program state, which in turn depends on the underlying stochastic traffic pattern. Whereas existing profilers can only analyze stateless network processing, P4wn can analyze stateful processing behaviors and their respective probabilities. Although program profilers have general applications, we showcase a concrete use case in detail: adversarial testing. Unlike regular program testing, adversarial testing distinguishes and specifically stresses low-probability edge cases in a program. Our evaluation shows that P4wn can analyze complex programs that existing tools cannot handle, and that it can effectively identify edge-case traces.},
+booktitle = {Proceedings of the 26th ACM International Conference on Architectural Support for Programming Languages and Operating Systems},
+pages = {286–301},
+numpages = {16},
+keywords = {symbolic execution, adversarial testing, Programmable data planes},
+location = {Virtual, USA},
+series = {ASPLOS '21}
+}
+
+@inproceedings{10.1145/3386367.3431313,
+author = {Bressana, Pietro and Zilberman, Noa and Soul\'{e}, Robert},
+title = {Finding hard-to-find data plane bugs with a PTA},
+year = {2020},
+isbn = {9781450379489},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3386367.3431313},
+doi = {10.1145/3386367.3431313},
+abstract = {Bugs in network hardware can cause tremendous problems. However, programmable network devices have the potential to provide greater visibility into the internal behavior of devices, allowing us to more quickly find and identify problems. In this paper, we provide a taxonomy of data plane bugs, and use the taxonomy to derive a Portable Test Architecture (PTA) which offers essential abstractions for testing on a variety of network hardware devices. PTA is implemented with a novel data plane design that (i) separates target-specific from target-independent components, allowing for portability, and (ii) allows users to write a test program once at compile time, but dynamically alter the behavior via runtime configuration. We report 12 diverse bugs on different hardware targets, and their associated software, exposed using PTA.},
+booktitle = {Proceedings of the 16th International Conference on Emerging Networking EXperiments and Technologies},
+pages = {218–231},
+numpages = {14},
+location = {Barcelona, Spain},
+series = {CoNEXT '20}
+}
+
+@inproceedings{10.1145/3544216.3544247,
+author = {Zheng, Naiqian and Liu, Mengqi and Zhai, Ennan and Liu, Hongqiang Harry and Li, Yifan and Yang, Kaicheng and Liu, Xuanzhe and Jin, Xin},
+title = {Meissa: scalable network testing for programmable data planes},
+year = {2022},
+isbn = {9781450394208},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3544216.3544247},
+doi = {10.1145/3544216.3544247},
+abstract = {Ensuring the correctness of programmable data planes is important. Testing offers comprehensive correctness checking, including detecting both code bugs and non-code bugs. However, scalability is a key challenge for testing production-scale data planes to achieve high coverage. This paper presents Meissa, a scalable network testing system for programmable data planes with full path coverage. The core of Meissa is a domain-specific code summary technique that simplifies the control flow graph of a data plane program for scalable testing without sacrificing coverage. Code summary decomposes a data plane program into individual pipelines, and summarizes each pipeline with a succinct representation. We formally prove that Meissa with code summary achieves 100\% path coverage. We use both open-source and production-scale data plane programs to evaluate Meissa. The evaluation shows that (i) Meissa is able to test production-scale data plane programs that cannot be supported by state-of-the-art efforts, and (ii) besides P4 code bugs, Meissa is able to not only identify known non-code bugs, but also detect previously-unknown non-code bugs. We also share in this paper several real cases tested by Meissa in a production programmable data plane.},
+booktitle = {Proceedings of the ACM SIGCOMM 2022 Conference},
+pages = {350–364},
+numpages = {15},
+keywords = {programmable switches, formal methods, P4 testing},
+location = {Amsterdam, Netherlands},
+series = {SIGCOMM '22}
+}
+
+@ARTICLE{9923645,
+
+  author={Bressana, Pietro and Zilberman, Noa and Soulé, Robert},
+
+  journal={IEEE/ACM Transactions on Networking}, 
+
+  title={PTA: Finding Hard-to-Find Data Plane Bugs}, 
+
+  year={2023},
+
+  volume={31},
+
+  number={3},
+
+  pages={1324-1337},
+
+  keywords={Computer bugs;Hardware;Testing;Computer architecture;Taxonomy;Behavioral sciences;Throughput;Debugging;testing;network programmability (SDN/NFV/In-network computing)},
+
+  doi={10.1109/TNET.2022.3214062}}
+
+@INPROCEEDINGS{11143362,
+
+  author={Li, Wen and Li, Fuliang and Liu, Chunyuan and Wang, Xingwei},
+
+  booktitle={2025 IEEE/ACM 33rd International Symposium on Quality of Service (IWQoS)}, 
+
+  title={REP4: Automated Testing and Repairing Programmable Data Planes}, 
+
+  year={2025},
+
+  volume={},
+
+  number={},
+
+  pages={1-10},
+
+  keywords={Codes;Protocols;Switches;Quality of service;Manuals;Life estimation;Maintenance engineering;Hardware;Software;Testing;P4;verification;repair;network operations},
+
+  doi={10.1109/IWQoS65803.2025.11143362}}
+@INPROCEEDINGS{11023293,
+
+  author={Kim, Jiwon and Tian, Dave Jing and Ujcich, Benjamin E.},
+
+  booktitle={2025 IEEE Symposium on Security and Privacy (SP)}, 
+
+  title={Chimera: Fuzzing P4 Network Infrastructure for Multi-Plane Bug Detection and Vulnerability Discovery}, 
+
+  year={2025},
+
+  volume={},
+
+  number={},
+
+  pages={3088-3106},
+
+  keywords={Privacy;Computer bugs;Ecosystems;Fuzzing;Security},
+
+  doi={10.1109/SP61157.2025.00194}}
+
+@misc{yaseen2022fp4linerategreyboxfuzz,
+      title={FP4: Line-rate Greybox Fuzz Testing for P4 Switches}, 
+      author={Nofel Yaseen and Liangcheng Yu and Caleb Stanford and Ryan Beckett and Vincent Liu},
+      year={2022},
+      eprint={2207.13147},
+      archivePrefix={arXiv},
+      primaryClass={cs.NI},
+      url={https://arxiv.org/abs/2207.13147}, 
+}
+
+
+@inproceedings{10.1145/3672199.3673886,
+author = {Yang, Xin and Song, Enge and Li, Fuliang and Cao, Wanli and Pan, Tian and Song, Yang and Yang, Ye and Wu, Yongwang and Lu, Jianyuan and Yang, Bowen and Li, Xing and Lyu, Biao and Wen, Rong and Wang, Xingwei and Zhu, Shunmin},
+title = {A Hybrid Testing System on P4 Cloud Gateway},
+year = {2024},
+isbn = {9798400707148},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3672199.3673886},
+doi = {10.1145/3672199.3673886},
+abstract = {P4 gateway is the hub of cloud network, and with the growth of cloud traffic scale, the reliability of a cloud gateway must be guaranteed by testing. The existing cloud gateway testing solutions, such as symbolic execution and fuzzing, perform either insufficient scalability or poor coverage, leading to difficulties when deploying in production. To balance scalability and coverage, we present a hybrid testing system for P4 gateway that uses path probability as a tradeoff metric to combine fuzzing and symbolic execution. In addition, we applied a graph centrality strategy and intermediate result reuse operations to improve efficiency, and implemented a lightweight instrumentation tool for measuring coverage. We conducted evaluations on both open-source and production-scale P4 programs. The evaluations indicate that the prototype system achieved 100\% coverage on most programs with high efficiency. At present, the system is still undergoing continuous testing and optimization in production.},
+booktitle = {Proceedings of the 2024 SIGCOMM Workshop on Formal Methods Aided Network Operation},
+pages = {39–44},
+numpages = {6},
+keywords = {Fuzzing, Hybrid Testing, P4 Testing, Symbolic Execution},
+location = {Sydney, NSW, Australia},
+series = {FMANO '24}
+}
+
+@ARTICLE{10017156,
+
+  author={Shukla, Apoorv and Hudemann, Kevin and Vági, Zsolt and Hügerich, Lily and Smaragdakis, Georgios and Hecker, Artur and Schmid, Stefan and Feldmann, Anja},
+
+  journal={IEEE/ACM Transactions on Networking}, 
+
+  title={Runtime Verification for Programmable Switches}, 
+
+  year={2023},
+
+  volume={31},
+
+  number={4},
+
+  pages={1822-1837},
+
+  keywords={Computer bugs;Behavioral sciences;Runtime;Software;Fuzzing;Pipelines;Static analysis;Programmable networks;P4;verification},
+
+  doi={10.1109/TNET.2023.3234931}}
+
+@inproceedings{10.1145/351240.351266,
+author = {Claessen, Koen and Hughes, John},
+title = {QuickCheck: a lightweight tool for random testing of Haskell programs},
+year = {2000},
+isbn = {1581132026},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/351240.351266},
+doi = {10.1145/351240.351266},
+abstract = {Quick Check is a tool which aids the Haskell programmer in formulating and testing properties of programs. Properties are described as Haskell functions, and can be automatically tested on random input, but it is also possible to define custom test data generators. We present a number of case studies, in which the tool was successfully used, and also point out some pitfalls to avoid. Random testing is especially suitable for functional programs because properties can be stated at a fine grain. When a function is built from separately tested components, then random testing suffices to obtain good coverage of the definition under test.},
+booktitle = {Proceedings of the Fifth ACM SIGPLAN International Conference on Functional Programming},
+pages = {268–279},
+numpages = {12},
+series = {ICFP '00}
+}
+
+@article{10.1145/357766.351266,
+author = {Claessen, Koen and Hughes, John},
+title = {QuickCheck: a lightweight tool for random testing of Haskell programs},
+year = {2000},
+issue_date = {Sept. 2000},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {35},
+number = {9},
+issn = {0362-1340},
+url = {https://doi.org/10.1145/357766.351266},
+doi = {10.1145/357766.351266},
+abstract = {Quick Check is a tool which aids the Haskell programmer in formulating and testing properties of programs. Properties are described as Haskell functions, and can be automatically tested on random input, but it is also possible to define custom test data generators. We present a number of case studies, in which the tool was successfully used, and also point out some pitfalls to avoid. Random testing is especially suitable for functional programs because properties can be stated at a fine grain. When a function is built from separately tested components, then random testing suffices to obtain good coverage of the definition under test.},
+journal = {SIGPLAN Not.},
+month = sep,
+pages = {268–279},
+numpages = {12}
+}
+
+@INPROCEEDINGS{7107466,
+  author={Arts, Thomas and Hughes, John and Norell, Ulf and Svensson, Hans},
+  booktitle={2015 IEEE Eighth International Conference on Software Testing, Verification and Validation Workshops (ICSTW)}, 
+  title={Testing AUTOSAR software with QuickCheck}, 
+  year={2015},
+  volume={},
+  number={},
+  pages={1-4},
+  keywords={Testing;Software;Standards;Automotive engineering;Protocols;Conferences;Production},
+  doi={10.1109/ICSTW.2015.7107466}}
+
+@article{10.1007/s10270-017-0647-0,
+author = {Aichernig, Bernhard K. and Schumi, Richard},
+title = {Property-based testing of web services by deriving properties from business-rule models},
+year = {2019},
+issue_date = {Apr 2019},
+publisher = {Springer-Verlag},
+address = {Berlin, Heidelberg},
+volume = {18},
+number = {2},
+issn = {1619-1366},
+url = {https://doi.org/10.1007/s10270-017-0647-0},
+doi = {10.1007/s10270-017-0647-0},
+abstract = {Property-based testing is well suited for web-service applications, which was already shown in various case studies. For example, it has been demonstrated that JSON schemas can be used to automatically derive test case generators for web forms. In this work, we present a test case generation approach for a rule engine-driven web-service application. Business-rule models serve us as input for property-based testing. We parse these models to automatically derive generators for sequences of web-service requests together with their required form data. Property-based testing is mostly applied in the context of functional programming. Here, we define our properties in an object-oriented style in C# and its tool FsCheck. We apply our method to the business-rule models of an industrial web-service application in the automotive domain.},
+journal = {Softw. Syst. Model.},
+month = apr,
+pages = {889–911},
+numpages = {23},
+keywords = {Web services, Test case generation, QuickCheck, Property-based testing, Model-based testing, FsCheck, Business-rule models}
+}
+
+@inproceedings{10.1145/2034654.2034667,
+author = {Hughes, John M. and Bolinder, Hans},
+title = {Testing a database for race conditions with QuickCheck},
+year = {2011},
+isbn = {9781450308595},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2034654.2034667},
+doi = {10.1145/2034654.2034667},
+abstract = {In 2009, Claessen et al. presented a way of testing for race conditions in Erlang programs, using QuickCheck to generate parallel tests, a randomizing scheduler to provoke races, and a sequential consistency condition to detect failures of atomicity [1]. That work used a small industrial prototype as the main example, showing how two race conditions could be detected and diagnosed.In this paper, we apply the same methods to dets, a vital component of the mnesia database system, and more than an order of magnitude larger. dets is known to fail occasionally in production, making it a promising candidate for a race condition hunt. We found five race conditions with relatively little effort, two of which may account for the observed failures in production. We explain how the testing was done, present most of the QuickCheck specification used, and describe the problems we discovered and their causes.},
+booktitle = {Proceedings of the 10th ACM SIGPLAN Workshop on Erlang},
+pages = {72–77},
+numpages = {6},
+keywords = {quickcheck, erlang},
+location = {Tokyo, Japan},
+series = {Erlang '11}
+}
+
+@inproceedings{10.1145/1596600.1596612,
+author = {Paris, Javier and Arts, Thomas},
+title = {Automatic testing of TCP/IP implementations using QuickCheck},
+year = {2009},
+isbn = {9781605585079},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1596600.1596612},
+doi = {10.1145/1596600.1596612},
+abstract = {We describe how to use model based testing for testing a network stack. We present a framework that together with the property based testing tool QuickCheck can be used to test the TCP layer of the Internet protocol stack. TCP is a rather difficult protocol to test, since it hides a lot of operations for the user that communicates to the stack via a socket interface. Internally, a lot happens and by only controlling the interface, full testing is not possible. This is typical for more complex protocols and we therefore claim that the presented method can easily be extended to other cases. We present an automatic test case generator for TCP using Quickcheck. This tester generates packet flows to test specific features of a TCP stack. It then controls the stack under test to run the test by using the interface provided by it (for example, the socket interface), and by sending replies to the packets created by the stack under test. We validated the test framework on the standard Linux TCP/IP implementation.},
+booktitle = {Proceedings of the 8th ACM SIGPLAN Workshop on ERLANG},
+pages = {83–92},
+numpages = {10},
+keywords = {networking, tcp/ip, testing},
+location = {Edinburgh, Scotland},
+series = {ERLANG '09}
+}
+
+@article{MacIver2019, doi = {10.21105/joss.01891}, url = {https://doi.org/10.21105/joss.01891}, year = {2019}, publisher = {The Open Journal}, volume = {4}, number = {43}, pages = {1891}, author = {MacIver, David R. and Hatfield-Dodds, Zac and Contributors, Many Other}, title = {Hypothesis: A new approach to property-based testing}, journal = {Journal of Open Source Software} } 
+
+
+@misc{midtgaard_pbt_frameworks,
+  author       = {Jan Midtgaard},
+  title        = {Overview of Property-Based Testing Functionality},
+  howpublished = {\url{https://github.com/jmid/pbt-frameworks}},
+  year         = {2024},
+}
+
+@inproceedings{10.1145/3092703.3092711,
+author = {L\"{o}scher, Andreas and Sagonas, Konstantinos},
+title = {Targeted property-based testing},
+year = {2017},
+isbn = {9781450350761},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3092703.3092711},
+doi = {10.1145/3092703.3092711},
+abstract = {We introduce targeted property-based testing, an enhanced form of property-based testing that aims to make the input generation component of a property-based testing tool guided by a search strategy rather than being completely random. Thus, this testing technique combines the advantages of both search-based and property-based testing. We demonstrate the technique with the framework we have built, called Target, and show its effectiveness on three case studies. The first of them demonstrates how Target can employ simulated annealing to generate sensor network topologies that form configurations with high energy consumption. The second case study shows how the generation of routing trees for a wireless network equipped with directional antennas can be guided to fulfill different energy metrics. The third case study employs Target to test the noninterference property of information-flow control abstract machine designs, and compares it with a sophisticated hand-written generator for programs of these abstract machines.},
+booktitle = {Proceedings of the 26th ACM SIGSOFT International Symposium on Software Testing and Analysis},
+pages = {46–56},
+numpages = {11},
+keywords = {Search-based testing, QuickCheck, Property-based testing, PropEr},
+location = {Santa Barbara, CA, USA},
+series = {ISSTA 2017}
+}
+
+@inproceedings{10.1145/3230543.3230548,
+author = {Stoenescu, Radu and Dumitrescu, Dragos and Popovici, Matei and Negreanu, Lorina and Raiciu, Costin},
+title = {Debugging P4 programs with vera},
+year = {2018},
+isbn = {9781450355674},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3230543.3230548},
+doi = {10.1145/3230543.3230548},
+abstract = {We present Vera, a tool that verifies P4 programs using symbolic execution. Vera automatically uncovers a number of common bugs including parsing/deparsing errors, invalid memory accesses, loops and tunneling errors, among others. Vera can also be used to verify user-specified properties in a novel language we call NetCTL.To enable scalable, exhaustive verification of P4 program snapshots, Vera automatically generates all valid header layouts and uses a novel data-structure for match-action processing optimized for verification. These techniques allow Vera to scale very well: it only takes between 5s-15s to track the execution of a purely symbolic packet in the largest P4 program currently available (6KLOC) and can compute SEFL model updates in milliseconds. Vera can also explore multiple concrete dataplanes at once by allowing the programmer to insert symbolic table entries; the resulting verification highlights possible control plane errors.We have used Vera to analyze many P4 programs including the P4 tutorials, P4 programs in the research literature and the switch code from https://p4.org. Vera has found several bugs in each of them in seconds/minutes.},
+booktitle = {Proceedings of the 2018 Conference of the ACM Special Interest Group on Data Communication},
+pages = {518–532},
+numpages = {15},
+location = {Budapest, Hungary},
+series = {SIGCOMM '18}
+}
+
+@inproceedings{wang_et_al,
+  author =	{Wang, Qinshi and Pan, Mengying and Wang, Shengyi and Doenges, Ryan and Beringer, Lennart and Appel, Andrew W.},
+  title =	{{Foundational Verification of Stateful P4 Packet Processing}},
+  booktitle =	{14th International Conference on Interactive Theorem Proving (ITP 2023)},
+  pages =	{32:1--32:20},
+  series =	{Leibniz International Proceedings in Informatics (LIPIcs)},
+  ISBN =	{978-3-95977-284-6},
+  ISSN =	{1868-8969},
+  year =	{2023},
+  volume =	{268},
+  editor =	{Naumowicz, Adam and Thiemann, Ren\'{e}},
+  publisher =	{Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik},
+  address =	{Dagstuhl, Germany},
+  URL =		{https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITP.2023.32},
+  URN =		{urn:nbn:de:0030-drops-184077},
+  doi =		{10.4230/LIPIcs.ITP.2023.32},
+  annote =	{Keywords: Software Defined Networking, Verifiable P4, Stateful data plane programming}
+}
+
+
+@article{10.1145/357766.351266,
+author = {Claessen, Koen and Hughes, John},
+title = {QuickCheck: a lightweight tool for random testing of Haskell programs},
+year = {2000},
+issue_date = {Sept. 2000},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {35},
+number = {9},
+issn = {0362-1340},
+url = {https://doi.org/10.1145/357766.351266},
+doi = {10.1145/357766.351266},
+abstract = {Quick Check is a tool which aids the Haskell programmer in formulating and testing properties of programs. Properties are described as Haskell functions, and can be automatically tested on random input, but it is also possible to define custom test data generators. We present a number of case studies, in which the tool was successfully used, and also point out some pitfalls to avoid. Random testing is especially suitable for functional programs because properties can be stated at a fine grain. When a function is built from separately tested components, then random testing suffices to obtain good coverage of the definition under test.},
+journal = {SIGPLAN Not.},
+month = sep,
+pages = {268–279},
+numpages = {12}
+}
+
+@article{Hughes2016,
+author="Hughes, John",
+editor="Lindley, Sam
+and McBride, Conor
+and Trinder, Phil
+and Sannella, Don",
+title="Experiences with QuickCheck: Testing the Hard Stuff and Staying Sane",
+bookTitle="A List of Successes That Can Change the World: Essays Dedicated to Philip Wadler on the Occasion of His 60th Birthday",
+year="2016",
+publisher="Springer International Publishing",
+address="Cham",
+pages="169--186",
+abstract="This is not a typical scientific paper. It does not present a new method, with careful experiments to evaluate it, and detailed references to related work. Rather, it recounts some of my experiences over the last 15 years, working with QuickCheck, and its purpose is as much to entertain as to inform.",
+isbn="978-3-319-30936-1",
+doi="10.1007/978-3-319-30936-1_9",
+url="https://doi.org/10.1007/978-3-319-30936-1_9"
+}
