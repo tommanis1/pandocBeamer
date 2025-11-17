@@ -1,16 +1,30 @@
-# Scripts for html slides from markdown using pandoc
+# Scripts for HTML Slides from Markdown Using Pandoc
 
-## usage
+## Usage
 
-Run the python script
-```
+Run the Python script:
+```bash
 pandocBeamer
 ```
 
-## examples
+## Examples
 
-to be added
+*To be added*, see examples/ for a single example
 
-## todo
+## TODO
 
-numerous 
+Numerous items:
+
+- [ ] `\tikz` command is only recognised in rawblock
+
+  **Current requirement:**
+  ````md
+  ```{=tex}
+  \tikz{\cat{topics.tikz}, width=50% .centered}
+  ```
+  ````
+  
+  **Desired syntax:**
+  ```
+  \tikz{\cat{topics.tikz}, width=50% .centered}
+  ```
