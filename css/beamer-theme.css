@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
 @font-face {
     font-family: "Computer Modern";
     src: url('fonts/cmunss.ttf');
@@ -12,14 +14,15 @@
     src: url('fonts/cmunsi.ttf');
     font-style: italic, oblique;
   }
-  
+
   /* Outline */
   .slides {
     /* outline-style: solid;
     outline-offset: 1rem;
     outline-width: 1px;
     outline-color: #000; */
-    font-size: 4vh;
+    font-size: 4.6vh!important;
+    font-family: 'Lato', sans-serif;
     /* Remove all defaults */
     width: 100vw !important;
     height: 100vh !important;
@@ -44,29 +47,29 @@
   }
   
   .reveal h1 {
-    font-size: 5vh !important;
+    font-size: 7vh !important;
     margin-bottom: 3vh !important;
     text-align: left !important;
-    margin-left: 4rem !important;
-    margin-top: 2rem !important;
+    margin-left: 4vw !important;
+    margin-top: 6vh !important;
 
     color: blue !important;
   }
   
   .reveal h2 {
-    font-size: 2.5rem !important;
-    margin-bottom: 3rem !important;
+    /* font-size: 2.5rem !important;
+    margin-bottom: 3rem !important; */
   }
   
   .reveal h3 {
-    font-size: 1.75rem !important;
+    /* font-size: 1.75rem !important; */
   }
   
   .reveal h4 {
-    font-size: 1.25rem !important;
-    font-weight: bold !important;
+    /* font-size: 1.25rem !important;
+    font-weight: bold !important; */
   }
-  
+
   @media print {
     .slides {
       box-shadow: 0px 0px 0px;
@@ -79,7 +82,7 @@
   } */
   
   .date {
-    font-size: 1.5rem !important; 
+    /* font-size: 1.5rem !important;  */
   }
 
   /* .reveal {
@@ -103,15 +106,15 @@
 
 /* body of each slide */
   .reveal section > *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-    padding-left: 2em;
-    padding-right: 2em;
-    line-height: 1.45em;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    line-height: 2vh; /*TODO not tested*/
   }
 
 .reveal section ul,
 .reveal section ol {
-  margin-left: 1em;
-  padding-left: 1em;
+  margin-left: 2vw;
+  padding-left: 2vw;
 }
 
 /* .left-align-math {
@@ -146,8 +149,8 @@ img.tikz-img.centered {
 
 .figure .caption {
   display: block;
-  margin-top: 0.5em;
-  font-size: 0.9em;
+  margin-top: 1vh;
+  font-size: 1.8vh;
   font-style: italic;
   color: #555;
 }
@@ -182,6 +185,67 @@ img.tikz-img.centered {
   margin: 0;
   padding: 1vw;
   overflow-x: auto;
-  line-height: 1.45em;
+  line-height: 3vh;
   font-size: 1vw;
+}
+
+/* Custom title slide */
+.slides section:has(.title-slide) {
+  background-color: #f46524 !important;
+  height: 100% !important;
+  /* width: 100% !important; */
+}
+
+.title-slide {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  padding: 8vh !important;
+  text-align: left !important;
+  height: 100% !important;
+  /* width: 100% !important; */
+}
+
+.title-slide .title-main {
+  color: white !important;
+  font-size: 12vh !important;
+  font-weight: bold !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  align-self: flex-end !important;
+  margin-top: 6vh !important;
+  position: relative !important;
+}
+
+.title-slide .title-main::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -4vh !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 0.7vh !important;
+  background-color: white !important;
+  margin-right: 5vw !important;
+}
+
+.title-slide .title-subtitle {
+  color: white !important;
+  font-size: 7vh !important;
+  font-weight: normal !important;
+  margin: 0 !important;
+  text-align: left !important;
+  align-self: flex-end !important;
+  margin-bottom: 30vh !important;
+}
+
+.title-slide .title-bottom-line {
+  position: absolute !important;
+  bottom: 8vh !important;
+  right: 0 !important;
+  width: 70% !important;
+  height: 0.35vh !important;
+  background-color: white !important;
+  margin-right: 5vw !important;
 }
