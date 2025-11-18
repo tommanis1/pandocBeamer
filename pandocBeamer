@@ -90,7 +90,7 @@ def build_html_command(input_file, output_file, script_dir, filters=None):
         "-V", "center=false",
         "--variable", "transition=none",
         "-V", f"revealjs-url={str(script_dir / "vendor" / "reveal.js")}",
-        "-V", f"theme={str(script_dir / "css" / "beamer-theme.css")}",
+        "-V", f"theme={str(script_dir / "css" / "beamer-theme")}",
         "--mathjax",
         "--css", str(script_dir / "css" / "beamer-theme.css"),
     ]
@@ -168,6 +168,18 @@ def main():
         nargs="+",
         help="List of Lua filters to apply (default: all filters in LUA list)"
     )
+    parser.add_argument(
+        "--width",
+        type=int,
+        default=3840,
+        help="PDF output width in pixels (default: 3840 for 4K)"
+    )
+    parser.add_argument(
+        "--height",
+        type=int,
+        default=2160,
+        help="PDF output height in pixels (default: 2160 for 4K)"
+    )
     parser.set_defaults(backend="html")
 
     args = parser.parse_args()
@@ -226,8 +238,9 @@ def main():
                 print(f"Error: {node_script} not found", file=sys.stderr)
                 sys.exit(1)
 
-            # Run the HTML-to-PDF conversion
-            pdf_cmd = ["node", str(node_script), str(html_output), str(output_file)]
+            # Run the HTML-to-PDF conversion with custom resolution
+            pdf_cmd = ["node", str(node_script), str(html_output), str(output_file),
+                      str(args.width), str(args.height)]
             pdf_result = subprocess.run(pdf_cmd, check=True)
 
             if pdf_result.returncode == 0:
