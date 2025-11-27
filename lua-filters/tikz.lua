@@ -3,11 +3,13 @@ local system = require 'pandoc.system'
 local tikz_doc_template = [[
 \documentclass{standalone}
 \usepackage{xcolor}
+\usepackage{fontawesome5}
 \usepackage{tikz}
 \usepackage{svg}
 \usetikzlibrary{positioning}
 \usetikzlibrary{calc}
-
+\usepackage{amssymb}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, calc, decorations.pathmorphing, shadows.blur}
 \usepackage{graphicx}
 \begin{document}
 \nopagecolor
