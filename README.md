@@ -34,4 +34,6 @@ Numerous items:
   **Desired syntax:**
   ```
   \tikz{\cat{topics.tikz}, width=50% .centered}
-  ```
+  ``
+
+- [ ] tikz shadows show up as black boxes in the pdf
